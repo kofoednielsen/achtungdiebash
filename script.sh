@@ -21,7 +21,7 @@ input() {
         if [ "$lobby" != "1" ]
         then
           # don't process if user doesnt exist and not in lobby
-          break
+          continue
         fi
         echo -n ${colors[$used_colors]} > $PLAYERS_DIR/$name/color
         used_colors=`expr $used_colors + 1`
