@@ -78,7 +78,7 @@ game() {
           echo -n $x > $PLAYERS_DIR/$player/x
           echo -n $y > $PLAYERS_DIR/$player/y
         fi
-        playerstring="$string$color $player\n"
+        playerstring="$playerstring$color $player\n"
         i=`expr $i + 1`
       done
 
