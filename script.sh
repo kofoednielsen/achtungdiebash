@@ -70,6 +70,7 @@ game() {
         then
           # kill thme player!
           rm -r $PLAYERS_DIR/$player
+          continue
         else
           # paint squares where snake is now
           echo -n $color > $GAME_DIR/$x/$y
