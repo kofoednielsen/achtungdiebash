@@ -21,7 +21,6 @@ input() {
         lobby=`cat $GAME_DIR/lobby 2> /dev/null`
         if [ "$lobby" = "0" ]
         then
-          echo "not in lobby"
           # don't process if user doesnt exist and not in lobby
           continue
         fi
