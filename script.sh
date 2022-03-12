@@ -89,9 +89,9 @@ game() {
       do
         string="$string`cat $GAME_DIR/$x/$y`"
       done
-        string="$string\n$playerstring\n"
+        string="$string\n$"
     done
-    printf "$string\n"
+    printf "$string\n$playerstring\n"
 
     if [ "$i" = "1" ]
     then
