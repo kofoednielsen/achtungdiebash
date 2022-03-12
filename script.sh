@@ -41,6 +41,7 @@ game() {
     # MOVE PLAYERS
     i=0
     string=`printf "\033c"`
+    playerstring=""
     for player in `ls $PLAYERS_DIR`;
       do
         input=`cat $PLAYERS_DIR/$player/input 2> /dev/null`
@@ -77,7 +78,7 @@ game() {
           echo -n $x > $PLAYERS_DIR/$player/x
           echo -n $y > $PLAYERS_DIR/$player/y
         fi
-        string="$string$color $player\n"
+        playerstring="$string$color $player\n"
         i=`expr $i + 1`
       done
 
@@ -88,7 +89,7 @@ game() {
       do
         string="$string`cat $GAME_DIR/$x/$y`"
       done
-        string="$string\n"
+        string="$string\n$playerstring\n"
     done
     printf "$string\n"
 
