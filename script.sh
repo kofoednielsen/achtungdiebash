@@ -1,14 +1,10 @@
 GAME_DIR="/tmp/actungdebash"
 PLAYERS_DIR="$GAME_DIR/players"
 
-
-rm -r $PLAYERS_DIR
-mkdir -p $PLAYERS_DIR
+colors=("🟩" "🟥" "🟦" "⬛" "🟪" "🟧")
 
 input() {
   # INPUT LOOP
-  colors=("🟩" "🟥" "🟦" "⬛" "🟪" "🟧")
-  used_colors=0
   while true 
   do
     input=`nc -l 1337`
@@ -18,19 +14,26 @@ input() {
     name=${input_parts[0]}
     if [ "$direction" = "w"  ] || [ "$direction" == "a"  ] || [ "$direction" == "s"  ] || [ "$direction" == "d"  ] || [ "$direction" == "r" ]
     then
-      mkdir -p "$PLAYERS_DIR/$name"
-      echo -n "$direction" > "$PLAYERS_DIR/$name/input"
-      color=`cat $PLAYERS_DIR/$name/color 2> /dev/null`
       if [ "$color" = "" ]
       then
+        lobby=`cat $GAME_DIR/lobby 2> /dev/null`
+        if [ "$lobby" != "1" ]
+        then
+          # don't process if user doesnt exist and not in lobby
+          break
+        fi
         echo -n ${colors[$used_colors]} > $PLAYERS_DIR/$name/color
         used_colors=`expr $used_colors + 1`
       fi
+      mkdir -p "$PLAYERS_DIR/$name"
+      echo -n "$direction" > "$PLAYERS_DIR/$name/input"
+      color=`cat $PLAYERS_DIR/$name/color 2> /dev/null`
     fi
   done
 }
 
 game() {
+  echo "0" > $GAME_DIR/lobby
   # GAME LOOP
   while true 
   do
@@ -116,6 +119,7 @@ create_field() {
 
 lobby() {
   all_ready=0
+  echo "1" > $GAME_DIR/lobby
   while [ !all_ready ]
   do
     clear
@@ -144,7 +148,6 @@ lobby() {
 }
 
 win() {
-  clear
   for player in `ls $PLAYERS_DIR`;
   do
     echo "Congratulations $player!. You have won the game!"
@@ -154,8 +157,15 @@ win() {
 }
 
 
+while true
+do
+rm -r $PLAYERS_DIR
+mkdir -p $PLAYERS_DIR
+used_colors=0
 input &
 lobby
 create_field
 game
 win
+kill $!
+done
