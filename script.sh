@@ -89,7 +89,7 @@ game() {
       do
         string="$string`cat $GAME_DIR/$x/$y`"
       done
-        string="$string\n$"
+        string="$string\n"
     done
     printf "$string\n$playerstring\n"
 
