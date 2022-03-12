@@ -2,6 +2,7 @@ GAME_DIR="/tmp/actungdebash"
 PLAYERS_DIR="$GAME_DIR/players"
 
 colors=("🟩" "🟥" "🟦" "⬛" "🟪" "🟧")
+used_colors=0
 
 input() {
   # INPUT LOOP
