@@ -15,20 +15,21 @@ input() {
     name=${input_parts[0]}
     if [ "$direction" = "w"  ] || [ "$direction" == "a"  ] || [ "$direction" == "s"  ] || [ "$direction" == "d"  ] || [ "$direction" == "r" ]
     then
+      color=`cat $PLAYERS_DIR/$name/color 2> /dev/null`
       if [ "$color" = "" ]
       then
         lobby=`cat $GAME_DIR/lobby 2> /dev/null`
-        if [ "$lobby" != "1" ]
+        if [ "$lobby" = "0" ]
         then
+          echo "not in lobby"
           # don't process if user doesnt exist and not in lobby
           continue
         fi
+        mkdir -p "$PLAYERS_DIR/$name"
         echo -n ${colors[$used_colors]} > $PLAYERS_DIR/$name/color
         used_colors=`expr $used_colors + 1`
       fi
-      mkdir -p "$PLAYERS_DIR/$name"
       echo -n "$direction" > "$PLAYERS_DIR/$name/input"
-      color=`cat $PLAYERS_DIR/$name/color 2> /dev/null`
     fi
   done
 }
@@ -160,13 +161,13 @@ win() {
 
 while true
 do
-rm -r $PLAYERS_DIR
-mkdir -p $PLAYERS_DIR
-used_colors=0
-input &
-lobby
-create_field
-game
-win
-kill $!
+  rm -r $PLAYERS_DIR
+  mkdir -p $PLAYERS_DIR
+  used_colors=0
+  input &
+  lobby
+  create_field
+  game
+  win
+  kill $!
 done
