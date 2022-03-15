@@ -1,6 +1,10 @@
 # achtungdiebash  🐍
 Multiplayer actung die curve written in bash!
 
+
+![picture of game](https://github.com/kofoednielsen/achtungdiebash/blob/main/achtungdiebash.png)
+
+
 # how to play
 Grab your best friend/s and make sure you are on the same wifi
 
