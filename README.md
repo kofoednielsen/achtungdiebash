@@ -20,6 +20,6 @@ The game only supports up to 6 players, if you play more than 6 anything could h
 # If you can't join the lobby
 
 Try these steps to debug
-* Make sure you can reach eachother; Try to ping yourself from your friend laptop
+* Make sure you can reach eachother; Try to ping yourself from your friends laptop
 * Try to run `nc -l 1337` on your laptop, and then run `echo "test!" | nc <your_ip> 1337` from your frined laptop
 * Some netcat's dont support the -N option. If this is the case, try without -N or sometimes with -c in the client bash oneliner.
