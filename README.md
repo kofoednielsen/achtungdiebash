@@ -8,7 +8,7 @@ Run `server.sh` on your laptop
 
 Then run the client on both your own and your friends laptop. This bash one liner is the client 😎
 ```
-/bin/bash -c 'while :; do printf "\033c"; read -n1 input && printf "$(whoami) $input" | nc -N <server_ip>^C337; done'
+/bin/bash -c 'while :; do printf "\033c"; read -n1 input && printf "$(whoami) $input" | nc -N <server_ip> 1337; done'
 ```
 > replace <server_ip> with your local ip address
 
