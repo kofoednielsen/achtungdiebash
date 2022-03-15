@@ -6,7 +6,7 @@ Grab your best friend/s and make sure you are on the same wifi
 
 Run `server.sh` on your laptop
 
-Then run the client on both you and your friends laptop. This bash one liner is the client 😎
+Then run the client on both your own and your friends laptop. This bash one liner is the client 😎
 ```
 /bin/bash -c 'while :; do printf "\033c"; read -n1 input && printf "$(whoami) $input" | nc -N <server_ip>^C337; done'
 ```
